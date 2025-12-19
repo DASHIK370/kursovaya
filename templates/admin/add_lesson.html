@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block title %}Добавить занятие{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Добавить занятие</h1>
+
+<form method="post">
+  <div class="mb-3">
+    <label class="form-label">Группа</label>
+    <select name="group_id" class="form-select" required>
+      {% for g in groups %}
+        <option value="{{ g.id }}">{{ g.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Неделя</label>
+    <select name="week" class="form-select" required>
+      {% for w in range(1, 26) %}
+        <option value="{{ w }}">{{ w }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Тип занятия</label>
+    <select name="lesson_type" class="form-select" required>
+      <option value="lecture">Лекция</option>
+      <option value="practice">Практика</option>
+      <option value="lab">Лабораторная работа</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Преподаватель</label>
+    <input type="text" name="teacher_name" class="form-control" required>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Аудитория</label>
+    <input type="text" name="classroom_name" class="form-control" required>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Предмет</label>
+    <input type="text" name="subject" class="form-control" required>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">День недели</label>
+    <select name="weekday" class="form-select" required>
+      <option value="1">Понедельник</option>
+      <option value="2">Вторник</option>
+      <option value="3">Среда</option>
+      <option value="4">Четверг</option>
+      <option value="5">Пятница</option>
+      <option value="6">Суббота</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Номер пары</label>
+    <select name="lesson_number" class="form-select" required>
+      <option value="1">1 (8:00–9:30)</option>
+      <option value="2">2 (9:40–11:10)</option>
+      <option value="3">3 (11:20–12:50)</option>
+      <option value="4">4 (13:30–15:00)</option>
+      <option value="5">5 (15:10–16:40)</option>
+      <option value="6">6 (16:50–18:20)</option>
+      <option value="7">7 (18:30–20:00)</option>
+      <option value="8">8 (20:10–21:40)</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-success">Сохранить</button>
+  <a href="{{ url_for('admin_index') }}" class="btn btn-secondary">Отмена</a>
+</form>
+{% endblock %}

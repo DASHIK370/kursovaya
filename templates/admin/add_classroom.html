@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Добавить аудиторию{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Добавить аудиторию</h1>
+
+<form method="post">
+  <div class="mb-3">
+    <label class="form-label">Название аудитории</label>
+    <input type="text" name="name" class="form-control" placeholder="А-101" required>
+  </div>
+
+  <button type="submit" class="btn btn-success">Сохранить</button>
+  <a href="{{ url_for('admin_index') }}" class="btn btn-secondary">Отмена</a>
+</form>
+{% endblock %}

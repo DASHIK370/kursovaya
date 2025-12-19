@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Админка{% endblock %}
+{% block content %}
+<h1>Админ-панель</h1>
+
+<a class="btn btn-primary mb-3" href="{{ url_for('admin_add_group') }}">Добавить группу</a>
+<a class="btn btn-primary mb-3" href="{{ url_for('admin_add_lesson') }}">Добавить занятие</a>
+
+<h2 class="mt-4">Занятия</h2>
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th>Группа</th>
+      <th>День</th>
+      <th>Пара</th>
+      <th>Предмет</th>
+      <th>Преподаватель</th>
+      <th>Аудитория</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for l in lessons %}
+    <tr>
+      <td>{{ l.group.name }}</td>
+      <td>{{ l.weekday }}</td>
+      <td>{{ l.lesson_number }}</td>
+      <td>{{ l.subject }}</td>
+      <td>{{ l.teacher_name }}</td>
+      <td>{{ l.classroom_name }}</td>
+      <td>
+        <form method="post" action="{{ url_for('admin_delete_lesson', lesson_id=l.id) }}"
+              onsubmit="return confirm('Удалить занятие?');">
+          <button type="submit" class="btn btn-sm btn-danger">Удалить</button>
+        </form>
+      </td>
+    </tr>
+  {% else %}
+    <tr><td colspan="7">Занятий пока нет.</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+
+<h2>Группы</h2>
+<ul>
+  {% for g in groups %}
+    <li>{{ g.name }}</li>
+  {% else %}
+    <li>Нет групп.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

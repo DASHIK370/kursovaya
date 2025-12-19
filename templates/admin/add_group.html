@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Добавить группу{% endblock %}
+{% block content %}
+<h1>Добавить группу</h1>
+<form method="post">
+  <div class="mb-3">
+    <label class="form-label">Название группы</label>
+    <input type="text" name="name" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-success">Сохранить</button>
+</form>
+{% endblock %}
